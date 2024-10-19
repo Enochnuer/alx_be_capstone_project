@@ -37,6 +37,8 @@ class ProductViewSet(viewsets.ModelViewSet):
                 queryset = queryset.filter(stock_quantity__gt=0)
 
         return queryset
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user) 
 
 
 class OrderViewSet(viewsets.ModelViewSet):
